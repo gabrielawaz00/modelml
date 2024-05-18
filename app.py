@@ -11,6 +11,10 @@ y = np.array([0, 1, 1, 0])
 model = Perceptron()
 model.fit(X, y)
 
+@app.route('/')
+def say_hello():
+    return "Hello World"
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
@@ -19,5 +23,4 @@ def predict():
     return jsonify({'prediction': int(prediction[0])})
 
 if __name__ == '__main__':
-    app.run() # domyślnie ustawia localhost i port 5000
-    # app.run(host='0.0.0.0', port=8000)
+    app.run(debug=True, host='0.0.0.0', port=8000)
